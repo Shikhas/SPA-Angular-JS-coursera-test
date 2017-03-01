@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app='ShoppingListCheckOff'>
+<html lang="en" ng-app="ShoppingListCheckOff">
   <head>
     <meta charset="utf-8">
     <script src="angular.min.js"></script>
@@ -32,33 +32,31 @@
   <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-6" ng-controller='ToBuyController as tobuy'>
-     <h2>To Buy:</h2>
-     <ul>
-    <!--   <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li> -->
-    <!--   <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li> -->
-
-
-     <li ng-repeat="item in tobuy.items">
-              Buy {{ tobuy.itemQuantity }}    {{ tobuy.itemName}}
-               <button ng-click="tobuy.moveItem();">Bought</button>
-             </li>
-   </ul>
-
-
-
-     <div class="emptyMessage">Everything is bought!</div>
+    <div class="col-md-5" ng-controller="ToBuyController as toBuy">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>To Buy</h4>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="item in toBuy.shoppingList" class="list-group-item">Buy <span class="label label-primary">{{ item.quantity }}</span> {{ item.item }}
+                    <button ng-click="toBuy.buyItem($index)" class="btn btn-success btn-xs pull-right">Bought</button>
+                </li>
+                <li ng-if="!toBuy.shoppingList.length" class="list-group-item list-group-item-success">Everything is bought!</li>
+            </ul>
+        </div>
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6" ng-controller='AlreadyBoughtController as alreadybought'>
-     <h2>Already Bought:</h2>
-     <ul>
-       <li ng-repeat="item in alreadybought.items">
-                 Bought {{ alreadybought.itemQuantity }}  {{ alreadybought.itemName}}
-      </li>
-     </ul>
-     <div class="emptyMessage">Nothing bought yet.</div>
+    <div class="col-md-5" ng-controller="AlreadyBoughtController as Bought">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Already Bought </h4>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="item in Bought.shoppingList" class="list-group-item">Bought <span class="label label-default">{{ item.quantity }}</span> {{ item.item }}</li>
+                <li ng-if="!Bought.shoppingList.length" class="list-group-item list-group-item-danger">Nothing bought yet ! </li>
+            </ul>
+        </div>
     </div>
   </div>
 </div>
